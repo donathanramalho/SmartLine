@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using SmartLine.Shared.Services;
 using SmartLine.Services;
+using SmartLine.Shared.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace SmartLine;
 
@@ -18,6 +20,7 @@ public static class MauiProgram
 
         // Add device-specific services used by the SmartLine.Shared project
         builder.Services.AddSingleton<IFormFactor, FormFactor>();
+        builder.Services.AddTransient<TodoContext>();
 
         builder.Services.AddMauiBlazorWebView();
 
