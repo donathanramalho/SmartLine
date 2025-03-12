@@ -2,10 +2,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SmartLine.Shared.Model;
 
-public class Context : DbContext
+public class TodoContext : DbContext
 {
-    public Context(DbContextOptions<Context> options) : base(options) { }
+    public DbSet<Todo> Todos { get; set; }
 
-    public DbSet<Todo> TodoItems { get; set; }
-    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Todo>();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=sqlite.db");
+    }
 }

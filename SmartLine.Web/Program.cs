@@ -2,6 +2,9 @@ using SmartLine.Web.Components;
 using SmartLine.Shared.Services;
 using SmartLine.Web.Services;
 
+using SmartLine.Shared.Model;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +13,7 @@ builder.Services.AddRazorComponents()
 
 // Add device-specific services used by the SmartLine.Shared project
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
+builder.Services.AddTransient<TodoContext>();
 
 var app = builder.Build();
 
